@@ -71,10 +71,11 @@
       {positionX}
       {positionY}
       {isDirectionLeft}
+      on:click={() => setActiveCountry(null, null)}
     />
   {/if}
   <h1>Ceci n'est pas l'Europe</h1>
-  <svg {width} {height}>
+  <svg viewBox="0 0 {width} {height}" {width} {height} role="presentation">
     <!-- MAP -->
     <g transform="translate({margin.left}, {margin.top})">
       {#each countries as { path, id, properties }, i}
@@ -92,7 +93,8 @@
 
 <style>
   .chart-container {
-    --base-color: rgb(41, 41, 41); --chart-color: rgb(172, 186, 228);
+    --base-color: rgb(41, 41, 41);
+    --chart-color: rgb(172, 186, 228);
 
     height: 100vh;
     width: 100vw;
@@ -100,8 +102,18 @@
     & h1 {
       position: absolute;
       top: 5%;
-      left: 15%;
+      left: 5%;
       color: var(--base-color);
+
+      @media screen and (min-width: 768px) {
+        left: 10%;
+      }
+
+      @media screen and (min-width: 1024px) {
+        left: 20%;
+      }
+
+
     }
 
     & path {

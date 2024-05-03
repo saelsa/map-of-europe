@@ -1,4 +1,5 @@
 <script>
+  import { createEventDispatcher } from 'svelte'
   import { fade } from 'svelte/transition'
 
   export let name
@@ -6,6 +7,12 @@
   export let positionX = 0
   export let positionY = 0
   export let isDirectionLeft = false
+
+  const dispatch = createEventDispatcher()
+
+  function handleClick() {
+    dispatch('click')
+  }
 </script>
 
 <div
@@ -13,6 +20,7 @@
   style="top:{positionY}px;left:{positionX}px;"
   transition:fade={{ delay: 100, duration: 200 }}
   class:left={isDirectionLeft}
+  on:click={handleClick}
 >
   <p>{name} ({abbreviation})</p>
 </div>
